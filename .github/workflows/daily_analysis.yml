@@ -3,7 +3,7 @@ name: 每日股票分析
 on:
   # 定时触发 - 每天北京时间 18:00 (UTC 10:00)
   schedule:
-    - cron: '0 10 * * 1-5'  # 周一到周五，UTC 10:00 = 北京时间 18:00
+    - cron: '30 6 * * 1-5'  # 周一到周五，UTC 06:30 = 北京时间 14:30
   
   # 手动触发
   workflow_dispatch:
@@ -81,8 +81,8 @@ jobs:
           FEISHU_FOLDER_TOKEN: ${{ secrets.FEISHU_FOLDER_TOKEN }}
 
           
-          # 自选股列表 (从 secrets 或使用默认值)
-          STOCK_LIST: ${{ secrets.STOCK_LIST || '600519' }}
+          # 自选股列表 (从 secrets 或 vars 或使用默认值)
+          STOCK_LIST: ${{ secrets.STOCK_LIST || vars.SSTOCK_LIST || '600519' }}
           
           # 其他配置
           LOG_LEVEL: INFO
